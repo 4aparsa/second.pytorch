@@ -320,7 +320,7 @@ def fused_compute_statistics(overlaps,
             ignored_gt = ignored_gts[gt_num:gt_num + gt_nums[i]]
             ignored_det = ignored_dets[dt_num:dt_num + dt_nums[i]]
             dontcare = dontcares[dc_num:dc_num + dc_nums[i]]
-            tp, fp, fn, similarity, _ = compute_statistics_jit(
+            tp, fp, fn, similarity, thre = compute_statistics_jit(
                 overlap,
                 gt_data,
                 dt_data,
@@ -332,6 +332,7 @@ def fused_compute_statistics(overlaps,
                 thresh=thresh,
                 compute_fp=True,
                 compute_aos=compute_aos)
+            # print(thre[-1])
             pr[t, 0] += tp
             pr[t, 1] += fp
             pr[t, 2] += fn
@@ -610,6 +611,7 @@ def eval_class_v3(gt_annos,
                 thresholds = np.array(thresholds)
                 pr = np.zeros([len(thresholds), 4])
                 idx = 0
+                # print('class: {}, difficulty: {}, min_overlap: {}, metric: {}'.format(current_class,difficulty,min_overlap,metric))  xumiao
                 for j, num_part in enumerate(split_parts):
                     gt_datas_part = np.concatenate(
                         gt_datas_list[idx:idx + num_part], 0)
@@ -640,6 +642,7 @@ def eval_class_v3(gt_annos,
                 for i in range(len(thresholds)):
                     recall[m, l, k, i] = pr[i, 0] / (pr[i, 0] + pr[i, 2])
                     precision[m, l, k, i] = pr[i, 0] / (pr[i, 0] + pr[i, 1])
+                    # print('threshold: {}, precision: {}, recall: {}'.format(thresholds[i],precision[m, l, k, i],recall[m, l, k, i]))  xumiao
                     if compute_aos:
                         aos[m, l, k, i] = pr[i, 3] / (pr[i, 0] + pr[i, 1])
                 for i in range(len(thresholds)):
@@ -648,6 +651,7 @@ def eval_class_v3(gt_annos,
                     recall[m, l, k, i] = np.max(recall[m, l, k, i:], axis=-1)
                     if compute_aos:
                         aos[m, l, k, i] = np.max(aos[m, l, k, i:], axis=-1)
+
     ret_dict = {
         "recall": recall,
         "precision": precision,
@@ -687,6 +691,16 @@ def get_mAP_v2(prec):
     return sums / 11 * 100
 
 
+# def get_mAP_v2_1(prec):  # xumiao
+#     sums = 0
+#     k = [prec[..., i]*100 for i in range(0, prec.shape[-1], 4)]
+#     std = np.std(k, axis=0)
+#     print(std[0])
+#     for i in range(0, prec.shape[-1], 4):
+#         sums = sums + prec[..., i]
+#     return sums / 11 * 100
+
+
 def do_eval_v2(gt_annos,
                dt_annos,
                current_classes,
@@ -707,6 +721,7 @@ def do_eval_v2(gt_annos,
     ret = eval_class_v3(gt_annos, dt_annos, current_classes, difficultys, 2,
                         min_overlaps)
     mAP_3d = get_mAP_v2(ret["precision"])
+    # mAP_3d = get_mAP_v2_1(ret["precision"])  # xumiao
     return mAP_bbox, mAP_bev, mAP_3d, mAP_aos
 
 

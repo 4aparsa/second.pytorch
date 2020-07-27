@@ -656,6 +656,9 @@ def get_label_annos(label_folder, image_ids=None):
         image_ids = list(range(image_ids))
     annos = []
     label_folder = pathlib.Path(label_folder)
+    # with open('/home/xumiao/second.pytorch/second/data/val_eval.txt', 'r') as file:  ## xumiao, ImageSets_kitti_gta
+        # a = file.read()  ## xumiao
+    # image_ids = [int(x) for x in a.split()]  ## xumiao, due to val.pkl <--> trainval.pkl
     for idx in image_ids:
         image_idx_str = get_image_index_str(idx)
         label_filename = label_folder / (image_idx_str + '.txt')
