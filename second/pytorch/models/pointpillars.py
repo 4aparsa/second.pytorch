@@ -168,8 +168,7 @@ class PointPillarsScatter(nn.Module):
             # Create the canvas for this sample
             canvas = torch.zeros(self.nchannels, self.nx * self.ny, dtype=voxel_features.dtype,
                                  device=voxel_features.device)
-
-            # Only include non-empty pillars
+                        # Only include non-empty pillars
             batch_mask = coords[:, 0] == batch_itt
             this_coords = coords[batch_mask, :]
             indices = this_coords[:, 2] * self.nx + this_coords[:, 3]

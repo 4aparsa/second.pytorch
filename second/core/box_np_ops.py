@@ -784,6 +784,9 @@ def fused_get_anchors_area(dense_map, anchors_bv, stride, offset,
     grid_size_y = grid_size[1] - 1
     N = anchors_bv.shape[0]
     ret = np.zeros((N), dtype=dense_map.dtype)
+    # print(stride)  # xumiao
+    # print(offset)  # xumiao
+    # print(grid_size)  # xumiao
     for i in range(N):
         anchor_coor[0] = np.floor(
             (anchors_bv[i, 0] - offset[0]) / stride[0])
