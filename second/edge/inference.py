@@ -8,8 +8,8 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 # sys.path.append("..")
 # sys.path.append("../..")
-sys.path.append("/home/xumiao/second.pytorch/")
-sys.path.append("/home/xumiao/second.pytorch/second/")
+sys.path.append("/src/main/cpp/pointpillars/second.pytorch")
+sys.path.append("/src/main/cpp/pointpillars/second.pytorch/second/")
 import numpy as np
 import torchplus
 import torch
@@ -20,8 +20,8 @@ from second.protos import pipeline_pb2
 from second.core import box_np_ops
 from collections import OrderedDict
 
-config_path = "/home/xumiao/second.pytorch/second/configs/pointpillars/car/kitti_gta_v2.proto"  # xyres_16 gta_0403 gta_0408
-ckpt_path = "/home/xumiao/second.pytorch/second/models/kitti_gta_v2"  #xumiao jiachen kitti_gta gta_0406 gta_0408 
+config_path = "/src/main/cpp/pointpillars/second.pytorch/second/configs/pointpillars/car/kitti_gta_v2.proto"  # xyres_16 gta_0403 gta_0408
+ckpt_path = "/src/main/cpp/pointpillars/second.pytorch/second/models/kitti_gta_v2"  #xumiao jiachen kitti_gta gta_0406 gta_0408 
 data_path = '/home/xumiao/Edge/test/car/'  # data_path = '/home/xumiao/Edge/reduced/' 0407/
 save_path = '/home/xumiao/Edge/test/car/'  # save_path = '/home/xumiao/Edge/inference/' 0407/
 
