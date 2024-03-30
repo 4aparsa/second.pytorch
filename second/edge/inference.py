@@ -14,7 +14,7 @@ import numpy as np
 import torchplus
 import torch
 from google.protobuf import text_format
-from second.utils import simplevis
+# from second.utils import simplevis
 from voxelnet_v2 import build_network  # from second.pytorch.train import build_network
 from second.protos import pipeline_pb2
 from second.core import box_np_ops
