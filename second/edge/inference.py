@@ -10,6 +10,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 # sys.path.append("../..")
 sys.path.append("/src/main/cpp/pointpillars/second.pytorch")
 sys.path.append("/src/main/cpp/pointpillars/second.pytorch/second/")
+sys.path.append("/src/main/cpp/pointpillars/second.pytorch/SparseConvNet")
 import numpy as np
 import torchplus
 import torch
