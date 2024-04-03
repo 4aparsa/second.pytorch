@@ -33,7 +33,7 @@ from collections import OrderedDict
 # Local
 config_path = "/users/aparsa/EMP/src/main/cpp/pointpillars/second.pytorch/second/configs/pointpillars/car/kitti_gta_v2.proto"  # xyres_16 gta_0403 gta_0408
 ckpt_path = "/users/aparsa/EMP/src/main/cpp/pointpillars/second.pytorch/second/models/kitti_gta_v2"  #xumiao jiachen kitti_gta gta_0406 gta_0408 
-data_path = '/home/xumiao/Edge/test/car/'  # data_path = '/home/xumiao/Edge/reduced/' 0407/
+data_path = '/users/aparsa/EMP'  # data_path = '/home/xumiao/Edge/reduced/' 0407/
 save_path = '/home/xumiao/Edge/test/car/'  # save_path = '/home/xumiao/Edge/inference/' 0407/
 
 
