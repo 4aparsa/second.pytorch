@@ -125,7 +125,7 @@ def find_cuda_device_arch():
             cmd = f"{str(device_query_path)} | grep 'CUDA Capability'"
             print(cmd)
             try:
-                arch = subprocess.check_output(cmd, shell=True).decode().rstrip('\r\n').split(" ")[-1]
+                arch = subprocess.check_output("sudo " + cmd, shell=True).decode().rstrip('\r\n').split(" ")[-1]
             except subprocess.CalledProcessError as e:
                 print("An exception occurred")
                 if e.output.startswith('error: {'):
