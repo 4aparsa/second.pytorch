@@ -75,7 +75,9 @@ def find_cuda_device_arch():
         # TODO: add windows support
         return None
     cuda_home = find_cuda()
+    print("Cuda home" + cuda_home)
     if cuda_home is None:
+        print("Returning here")
         return None
     cuda_home = Path(cuda_home)
     try:
