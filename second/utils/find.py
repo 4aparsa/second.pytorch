@@ -125,13 +125,17 @@ def find_cuda_device_arch():
             cmd = f"{str(device_query_path)} | grep 'CUDA Capability'"
             print(cmd)
             try:
-                arch = subprocess.check_output("sudo " + cmd, shell=True).decode().rstrip('\r\n').split(" ")[-1]
+                arch = subprocess.check_output(cmd, shell=True)
+                print(arch)
+                arch = arch.decode()
+                print(arch)
+                arch = arch.rstrip('\r\n')
+                print(arch)
+                arch = arch.split(" ")[-1]
+                print(arch)
             except subprocess.CalledProcessError as e:
                 print("An exception occurred")
-                if e.output.startswith('error: {'):
-                    error = json.loads(e.output[7:]) # Skip "error: "
-                    print(error['code'])
-                    print(error['message'])
+                print(e)
             print(arch)
         print("=======> Arch is " + str(len(arch)))
         print("hi")
