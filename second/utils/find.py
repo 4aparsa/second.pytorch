@@ -71,6 +71,7 @@ def find_cuda():
 
 
 def find_cuda_device_arch():
+    
     if sys.platform == 'win32':
         # TODO: add windows support
         return None
@@ -124,6 +125,11 @@ def find_cuda_device_arch():
             print("here")
             cmd = f"{str(device_query_path)} | grep 'CUDA Capability'"
             print(cmd)
+            testcmd = "ls /users/aparsa"
+            try:
+                testout = subprocess.check_output(testcmd, shell=True)
+            except subprocess.CalledProcessError as e:
+                print("error in test cmd")
             try:
                 arch = subprocess.check_output(cmd, shell=True)
                 print(arch)
