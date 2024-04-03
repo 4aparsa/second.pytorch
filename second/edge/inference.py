@@ -189,6 +189,9 @@ class Inference():
             result_line = kitti_result_line(result_dict)
             result_lines.append(result_line)
         result_str = '\n'.join(result_lines)
+        print(result_lines)
+        print(label_preds)
+        print("Done with detection")
         return result_str
     
 
