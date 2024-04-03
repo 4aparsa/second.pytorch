@@ -140,18 +140,21 @@ class Inference():
         print("======> IN EXECUTE MODEL <======")
         print(points)
         points = points.reshape(-1,4)
-        ### point cloud
-        voxels, coordinates, num_points = self.voxel_generator.generate(points, self.max_voxels)
-        # print('coordinates', np.sum(coordinates), coordinates)
-    
-        ### other parameters (cont'd)
-        dense_voxel_map = box_np_ops.sparse_sum_for_anchors_mask(coordinates, tuple(self.grid_size[::-1][1:]))
-        dense_voxel_map = dense_voxel_map.cumsum(0)
-        dense_voxel_map = dense_voxel_map.cumsum(1)
-        anchors_area = box_np_ops.fused_get_anchors_area(dense_voxel_map, self.anchors_bv, self.voxel_size, self.pc_range, self.grid_size)
-        anchors_mask = anchors_area > 1
-        coordinates = np.pad(coordinates, ((0, 0), (1, 0)), mode='constant', constant_values=0)
-        anchors_mask = anchors_mask.reshape([1,-1])
+        try:
+            ### point cloud
+            voxels, coordinates, num_points = self.voxel_generator.generate(points, self.max_voxels)
+            # print('coordinates', np.sum(coordinates), coordinates)
+        
+            ### other parameters (cont'd)
+            dense_voxel_map = box_np_ops.sparse_sum_for_anchors_mask(coordinates, tuple(self.grid_size[::-1][1:]))
+            dense_voxel_map = dense_voxel_map.cumsum(0)
+            dense_voxel_map = dense_voxel_map.cumsum(1)
+            anchors_area = box_np_ops.fused_get_anchors_area(dense_voxel_map, self.anchors_bv, self.voxel_size, self.pc_range, self.grid_size)
+            anchors_mask = anchors_area > 1
+            coordinates = np.pad(coordinates, ((0, 0), (1, 0)), mode='constant', constant_values=0)
+            anchors_mask = anchors_mask.reshape([1,-1])
+        except Exception as e:
+            print(e)
     
         ### organize example
         example = {
