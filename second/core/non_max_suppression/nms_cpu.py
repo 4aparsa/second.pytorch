@@ -15,7 +15,7 @@ except:
         ["../cc/nms/nms_kernel.cu.cc", "../cc/nms/nms.cc"],
         current_dir / "nms.so",
         current_dir,
-        cuda=False)
+        cuda=True)
     from second.core.non_max_suppression.nms import (
         non_max_suppression_cpu, rotate_non_max_suppression_cpu)
 
