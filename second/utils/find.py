@@ -128,6 +128,8 @@ def find_cuda_device_arch():
             testcmd = "ls /users/aparsa"
             try:
                 testout = subprocess.check_output(testcmd, shell=True)
+                print("Test out worked")
+                print(testout)
             except subprocess.CalledProcessError as e:
                 print("error in test cmd")
             try:
