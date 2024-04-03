@@ -62,6 +62,7 @@ def find_cuda():
                 nvcc = subprocess.check_output(
                     [which, 'nvcc']).decode().rstrip('\r\n')
                 cuda_home = os.path.dirname(os.path.dirname(nvcc))
+                print("Cuda home" + str(cuda_home))
             except Exception:
                 cuda_home = None
     if cuda_home is None:
