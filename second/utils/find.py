@@ -82,7 +82,9 @@ def find_cuda_device_arch():
     cuda_home = Path(cuda_home)
     try:
         device_query_path = cuda_home / 'extras/demo_suite/deviceQuery'
+        print(device_query_path)
         if not device_query_path.exists():
+            print("unexpected")
             source = """
             #include <cuda_runtime.h>
             #include <iostream>
@@ -119,9 +121,12 @@ def find_cuda_device_arch():
                 except:
                     return None
         else:
+            print("here")
             cmd = f"{str(device_query_path)} | grep 'CUDA Capability'"
+            print(cmd)
             arch = subprocess.check_output(
                 cmd, shell=True).decode().rstrip('\r\n').split(" ")[-1]
+            print(arch)
         print("=======> Arch is " + str(len(arch)))
         # assert len(arch) == 2
         arch_list = [int(s) for s in arch.split(".")]
