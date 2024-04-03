@@ -128,6 +128,7 @@ def find_cuda_device_arch():
                 cmd, shell=True).decode().rstrip('\r\n').split(" ")[-1]
             print(arch)
         print("=======> Arch is " + str(len(arch)))
+        print("hi")
         # assert len(arch) == 2
         arch_list = [int(s) for s in arch.split(".")]
         arch_int = arch_list[0] * 10 + arch_list[1]
@@ -135,6 +136,7 @@ def find_cuda_device_arch():
         while arch_int > 10:
             try:
                 res = subprocess.check_output("nvcc -arch=sm_{}".format(arch_int), shell=True,  stderr=subprocess.STDOUT)
+                print("Res is " + str(res))
             except subprocess.CalledProcessError as e:
                 if "No input files specified" in e.output.decode():
                     find_work_arch = True
@@ -146,6 +148,7 @@ def find_cuda_device_arch():
         if find_work_arch:
             arch = f"sm_{arch_int}"
         else:
+            print("arch is going to be none")
             arch = None
 
     except Exception:
