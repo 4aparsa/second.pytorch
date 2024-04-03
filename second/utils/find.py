@@ -120,6 +120,7 @@ def find_cuda_device_arch():
             cmd = f"{str(device_query_path)} | grep 'CUDA Capability'"
             arch = subprocess.check_output(
                 cmd, shell=True).decode().rstrip('\r\n').split(" ")[-1]
+        print("=======> Arch is " + str(len(arch)))
         # assert len(arch) == 2
         arch_list = [int(s) for s in arch.split(".")]
         arch_int = arch_list[0] * 10 + arch_list[1]
