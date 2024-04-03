@@ -128,7 +128,10 @@ def find_cuda_device_arch():
                 arch = subprocess.check_output(cmd, shell=True).decode().rstrip('\r\n').split(" ")[-1]
             except subprocess.CalledProcessError as e:
                 print("An exception occurred")
-                print(e.output)
+                if e.output.startswith('error: {'):
+                    error = json.loads(e.output[7:]) # Skip "error: "
+                    print(error['code'])
+                    print(error['message'])
             print(arch)
         print("=======> Arch is " + str(len(arch)))
         print("hi")
