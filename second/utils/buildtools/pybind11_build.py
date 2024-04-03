@@ -89,8 +89,6 @@ def load_pb11(sources,
     if arch is None:
         arch = find_cuda_device_arch()
 
-    print("Arch " + arch)
-
     for s in sources:
         s = str(s)
         if ".cu" in s or ".cu.cc" in s:
