@@ -119,6 +119,7 @@ class Nvcc(Gpp):
                  build_directory: str = None):
         if arch is None:
             arch = find_cuda_device_arch()
+            print("Cuda home in Nvcc" + str(cuda_home))
             if arch is None:
                 raise ValueError("you must specify arch if use cuda.")
 
