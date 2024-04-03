@@ -136,6 +136,8 @@ def find_cuda_device_arch():
             except subprocess.CalledProcessError as e:
                 print("An exception occurred")
                 print(e)
+                print(e.returncode)
+                print(e.output.decode())
             print(arch)
         print("=======> Arch is " + str(len(arch)))
         print("hi")
