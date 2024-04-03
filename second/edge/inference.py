@@ -5,7 +5,7 @@ __author__ = 'Xumiao Zhang'
 
 import sys
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 # sys.path.append("..")
 # sys.path.append("../..")
 # Docker:
