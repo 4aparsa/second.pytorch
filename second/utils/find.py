@@ -76,7 +76,7 @@ def find_cuda_device_arch():
         # TODO: add windows support
         return None
     cuda_home = find_cuda()
-    print("Cuda home" + str(cuda_home))
+    print("Cuda home " + str(cuda_home))
     if cuda_home is None:
         print("Returning here")
         return None
@@ -125,7 +125,7 @@ def find_cuda_device_arch():
             print("here")
             cmd = f"{str(device_query_path)} | grep 'CUDA Capability'"
             print(cmd)
-            testcmd = "/usr/local/cuda/extras/demo_suite/deviceQuery"
+            testcmd = "ls -l /usr/local/cuda/extras/demo_suite"
             try:
                 testout = subprocess.check_output(testcmd, shell=True)
                 print("Test out worked")
