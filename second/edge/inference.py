@@ -138,6 +138,7 @@ class Inference():
     
     def execute_model(self, points):
         print("======> IN EXECUTE MODEL <======")
+        print(points)
         points = points.reshape(-1,4)
         ### point cloud
         voxels, coordinates, num_points = self.voxel_generator.generate(points, self.max_voxels)
@@ -162,13 +163,15 @@ class Inference():
             'anchors_mask': anchors_mask,  # 1*m, boolean, all False
             'image_idx': np.array([[0]])
         }
-        # print('total_points', points.shape[0])
-        # print('num_voxels', voxels.shape[0])
+        print('total_points', points.shape[0])
+        print('num_voxels', voxels.shape[0])
         example = example_convert_to_torch(example)
     
         ### predict
         with torch.no_grad():
             pred = self.net(example)[0]
+
+        print("Prediction: ", pred)
     
         ### save results
         scores = pred["scores"].data.cpu().numpy()
