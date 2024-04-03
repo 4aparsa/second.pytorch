@@ -137,6 +137,7 @@ class Inference():
         self.anchors = anchors.reshape([1,-1, 7])
     
     def execute_model(self, points):
+        print("======> IN EXECUTE MODEL <======")
         points = points.reshape(-1,4)
         ### point cloud
         voxels, coordinates, num_points = self.voxel_generator.generate(points, self.max_voxels)
