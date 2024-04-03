@@ -125,7 +125,7 @@ def find_cuda_device_arch():
             print("here")
             cmd = f"{str(device_query_path)} | grep 'CUDA Capability'"
             print(cmd)
-            testcmd = "ls /usr/local/cuda/extras/demo_suite"
+            testcmd = "/usr/local/cuda/extras/demo_suite/deviceQuery"
             try:
                 testout = subprocess.check_output(testcmd, shell=True)
                 print("Test out worked")
