@@ -137,8 +137,8 @@ class Inference():
         self.anchors = anchors.reshape([1,-1, 7])
     
     def execute_model(self, points):
-        print("======> IN EXECUTE MODEL <======")
-        print(points)
+        # print("======> IN EXECUTE MODEL <======")
+        # print(points)
         points = points.reshape(-1,4)
         try:
             ### point cloud
@@ -166,15 +166,15 @@ class Inference():
             'anchors_mask': anchors_mask,  # 1*m, boolean, all False
             'image_idx': np.array([[0]])
         }
-        print('total_points', points.shape[0])
-        print('num_voxels', voxels.shape[0])
+        # print('total_points', points.shape[0])
+        # print('num_voxels', voxels.shape[0])
         example = example_convert_to_torch(example)
     
         ### predict
         with torch.no_grad():
             pred = self.net(example)[0]
 
-        print("Prediction: ", pred)
+        # print("Prediction: ", pred)
     
         ### save results
         scores = pred["scores"].data.cpu().numpy()
@@ -196,9 +196,9 @@ class Inference():
             result_line = kitti_result_line(result_dict)
             result_lines.append(result_line)
         result_str = '\n'.join(result_lines)
-        print(result_lines)
-        print(label_preds)
-        print("Done with detection")
+        # print(result_lines)
+        # print(label_preds)
+        # print("Done with detection")
         return result_str
     
 
