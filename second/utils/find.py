@@ -146,9 +146,9 @@ def find_cuda_device_arch():
                 print(e)
                 print(e.returncode)
                 print(e.output.decode())
-            print(arch)
-        print("=======> Arch is " + str(len(arch)))
-        print("hi")
+            # print(arch)
+        # print("=======> Arch is " + str(len(arch)))
+        # print("hi")
         # assert len(arch) == 2
         arch_list = [int(s) for s in arch.split(".")]
         arch_int = arch_list[0] * 10 + arch_list[1]
